@@ -73,7 +73,7 @@ const deleteUpdate = async (req, res) => {
           BankName,
           Shortnote,
           Whatsapp,
-          IDcardimage :{
+          IDcardImage :{
             public_id: firstimg.public_id,
             url: firstimg.url
            },
