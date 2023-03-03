@@ -54,32 +54,26 @@ const deleteUpdate = async (req, res) => {
 
  // create new lesson
  const createLesson = async (req, res,next) =>  {
-  const { Name, School, BankName, AcctNo, AcctName, Shortnote ,Whatsapp  } = req.body
+  const { Name, School, BankName, AcctNo, AcctName, Shortnote ,Whatsapp ,images } = req.body
       try{
-          // uploading first image to cloud
-          const firstimg = await cloudinary.uploader.upload(req.body.IDcardImage,
+        
+      
+         let images = [...req.body.images];
+         let imagesBuffer = [];
+         for(let i=0; i< images.length; i++){
+          const uploadimg = await cloudinary.uploader.upload(images[i],
             {
               folder:"Images"
             })
-          //  uploading second image to cloud
-      
-         
+            imagesBuffer.push({
+              public_id: uploadimg.public_id,
+              url: uploadimg.secure_url
+            })
+         }
            
-        const lesson = await Lesson.create({
-          Name,
-          School,
-          AcctName,
-          AcctNo,
-          BankName,
-          Shortnote,
-          Whatsapp,
-          IDcardImage :{
-            public_id: firstimg.public_id,
-            url: firstimg.url
-           },
-          
-          
-        })
+         req.body.images= imagesBuffer
+
+        const lesson = await Lesson.create(req.body)
         res.status(201).json({
           success: true,
           lesson

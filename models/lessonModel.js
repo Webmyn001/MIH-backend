@@ -21,7 +21,7 @@ let Lesson = new Schema({
         type: String,
         required: true
     },
-    IDcardImage: 
+    images: [
     {
         public_id:{
          type: String,
@@ -33,7 +33,7 @@ let Lesson = new Schema({
         }
          
      },
-   
+    ],
     Whatsapp: {
         type: String,
         required: true
