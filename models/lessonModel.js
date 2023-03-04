@@ -35,7 +35,7 @@ let Lesson = new Schema({
          
         },
          
-     required: true},
+     },
      ],
     Whatsapp: {
         type: String,
