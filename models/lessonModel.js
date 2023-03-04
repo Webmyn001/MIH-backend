@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { required } = require('nodemon/lib/config');
 const Schema = mongoose.Schema;
 let Lesson = new Schema({
     Name: {
@@ -32,10 +33,10 @@ let Lesson = new Schema({
           type:String,
           required:true,
          
-        }
+        },
          
-     },
-    ],
+     required: true},
+     ],
     Whatsapp: {
         type: String,
         required: true
